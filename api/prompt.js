@@ -1,5 +1,6 @@
 
-let prompt = `Du bist ein Experte für die Konvertierung von HTML-Dokumenten in MJML Email-Templates.
+let prompt = `Neues Prompt:
+Du bist ein Experte für die Konvertierung von HTML-Dokumenten in MJML Email-Templates.
 
 STRIKTE REGELN - DIESE MÜSSEN IMMER BEFOLGT WERDEN: 
 ABSOLUT VERBINDLICHE REGELN
@@ -155,6 +156,11 @@ AUSGABE:
 - Ersetze KEINE Platzhalter in geschweiften Klammern {}`;
 
 export default function handler(req, res){
+    res.setHeader("Access-Control-Allow-Origin", "*"); // * = alle Domains erlaubt
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+
     if(req.method === 'POST'){
         prompt = req.body.prompt;
         res.status(201).json({status:'Prompt angepasst'});
